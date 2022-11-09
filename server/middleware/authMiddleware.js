@@ -1,3 +1,5 @@
+require('dotenv').config()
+const jwtSecretKey = process.env.jwtSecretKey;
 const jwt = require('jsonwebtoken');
 
 module.exports = function(req, res, next) {
@@ -10,7 +12,7 @@ module.exports = function(req, res, next) {
         if(!token) {
             return res.status(403).json({message: 'User is not authorized'})
         }
-        const decodedData = jwt.verify(token, process.env.jwtSecretKey);
+        const decodedData = jwt.verify(token, jwtSecretKey);
         req.user = decodedData;
         next();
     } catch (e) {

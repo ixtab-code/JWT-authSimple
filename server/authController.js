@@ -65,7 +65,8 @@ class authController {
             /* const adminRole = new Role({value: 'Admin'}); */
             /* await userRole.save(); */
             /* await adminRole.save(); */
-            res.json('getUser is working')
+            const users = await User.find();
+            res.json(users)
         } catch (e) {
             console.log(e);
             res.status(400).json({message: 'getUsers error'})
